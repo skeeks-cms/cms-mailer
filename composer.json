@@ -1,0 +1,27 @@
+{
+	"name": "skeeks/cms-mailer",
+	"description": "Mailer for SkeekS CMS",
+	"keywords": ["yii", "skeeks", "framework", "component", "mailer"],
+    "homepage": "http://cms.skeeks.com/",
+	"type": "yii2-extension",
+	"license": "BSD-3-Clause",
+	"support": {
+        "issues": "http://skeeks.com/",
+        "wiki": "http://en.cms.skeeks.com/docs/",
+        "source": "https://github.com/skeeks-cms/cms-mailer"
+    },
+	"authors": [
+		{
+			"name": "Semenov Alexander",
+			"email": "semenov@skeeks.com"
+		}
+	],
+	"require": {
+		"skeeks/cms": "*"
+	},
+    "autoload": {
+        "psr-4": {
+            "skeeks\\cms\\mailer\\": ""
+        }
+    }
+}
