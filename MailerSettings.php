@@ -8,6 +8,7 @@
 namespace skeeks\cms\mail;
 use skeeks\cms\base\Component;
 use yii\helpers\ArrayHelper;
+use yii\validators\EmailValidator;
 use yii\widgets\ActiveForm;
 
 /**
@@ -16,16 +17,6 @@ use yii\widgets\ActiveForm;
  */
 class MailerSettings extends Component
 {
-    /**
-     * @var string E-Mail администратора сайта (отправитель по умолчанию).
-     */
-    public $senderEmail                  = '';
-
-    /**
-     * @var string
-     */
-    public $senderName                   = '';
-
     /**
      * @var string E-Mail адрес или список адресов через запятую на который будут дублироваться все исходящие сообщения.
      */
@@ -49,18 +40,12 @@ class MailerSettings extends Component
     {
         return ArrayHelper::merge(parent::rules(), [
 
-            [['senderEmail'], 'string'],
-            [['senderEmail'], 'email'],
-
-            [['notifyEmailsHidden'], 'string'],
-            [['notifyEmails'], 'string'],
-
             [['notifyEmailsHidden'], 'string'],
             [['notifyEmails'], 'string'],
 
             [['notifyEmailsHidden'], function($attribute)
             {
-                if ($emails = $this->notifyAdminEmailsToArray())
+                if ($emails = explode(',', $this->notifyEmailsHidden))
                 {
                     foreach ($emails as $email)
                     {
@@ -78,7 +63,7 @@ class MailerSettings extends Component
 
             [['notifyEmails'], function($attribute)
             {
-                if ($emails = $this->notifyAdminEmailsHiddenToArray())
+                if ($emails = explode(',', $this->notifyEmails))
                 {
                     foreach ($emails as $email)
                     {
@@ -99,18 +84,13 @@ class MailerSettings extends Component
     public function attributeLabels()
     {
         return ArrayHelper::merge(parent::attributeLabels(), [
-            'senderEmail'               => \Yii::t('skeeks/mail', 'E-mail address of the sender'),
-            'senderName'                => \Yii::t('skeeks/mail', 'Name of the sender'),
-            'notifyEmails'              => 'Email адреса уведомлений',
-            'notifyEmailsHidden'        => 'Изображение заглушка',
+            'notifyEmails'              => \Yii::t('skeeks/mail', 'Duplicate all sent letters'),
+            'notifyEmailsHidden'        => \Yii::t('skeeks/mail', 'Duplicate all sent letters as hidden'),
         ]);
     }
 
     public function renderConfigForm(ActiveForm $form)
     {
-        echo $form->field($this, 'senderEmail');
-        echo $form->field($this, 'senderName');
-
         echo $form->field($this, 'notifyEmails')->textarea();
         echo $form->field($this, 'notifyEmailsHidden')->textarea();
     }

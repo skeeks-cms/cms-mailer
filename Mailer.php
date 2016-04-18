@@ -18,15 +18,21 @@ class Mailer extends \yii\swiftmailer\Mailer
      */
     public $messageClass = 'skeeks\cms\mail\Message';
 
+    /**
+     * @var array Duplicate all sent messages
+     */
     public $notifyEmails        = [];
+
+    /**
+     * @var array Duplicate all sent letters as hidden
+     */
     public $notifyEmailsHidden  = [];
 
     public function init()
     {
         parent::init();
 
-        //Отлов событий отправки сообщений с сайта, и их модификация.
-        \yii\base\Event::on(static::className(), static::EVENT_BEFORE_SEND, [$this, 'beforeSendEmail']);
+        $this->on(static::EVENT_BEFORE_SEND, [$this, 'beforeSendEmail']);
     }
 
     /**
