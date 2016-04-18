@@ -11,6 +11,20 @@ return [
     [
         'mailer' => [
             'class'         => 'skeeks\cms\mail\Mailer',
+            'view'          =>
+            [
+                'theme' =>
+                [
+                    'pathMap' =>
+                    [
+                        '@app/mail' =>
+                        [
+                            '@app/mail',
+                            '@skeeks/cms/mail/templates'
+                        ]
+                    ]
+                ]
+            ]
         ],
     ],
 

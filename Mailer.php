@@ -28,9 +28,36 @@ class Mailer extends \yii\swiftmailer\Mailer
      */
     public $notifyEmailsHidden  = [];
 
+
+    /**
+     * @var array
+     */
+    public $tagStyles =
+    [
+        'h1' => 'color:#1D5800;font-size:32px;font-weight:normal;margin-bottom:13px;margin-top:20px;',
+        'h2' => 'color:#1D5800;font-size:28px;font-weight:normal;margin-bottom:10px;margin-top:17px;',
+        'h3' => 'color:#1D5800;font-size:24px;font-weight:normal;margin-bottom:7px;margin-top:14px;',
+        'h4' => 'color:#1D5800;font-size:20px;font-weight:normal;margin-bottom:6px;margin-top:11px;',
+        'h5' => 'color:#1D5800;font-size:16px;font-weight:normal;margin-bottom:6px;margin-top:8px;',
+        'p' => 'font:Arial,Helvetica,sans-serif;',
+    ];
+
     public function init()
     {
         parent::init();
+
+        if (\Yii::$app->mailerSettings)
+        {
+            if (\Yii::$app->mailerSettings->notifyEmailsHidden)
+            {
+                $this->notifyEmailsHidden = explode(',', \Yii::$app->mailerSettings->notifyEmailsHidden);
+            }
+
+            if (\Yii::$app->mailerSettings->notifyEmails)
+            {
+                $this->notifyEmails = explode(',', \Yii::$app->mailerSettings->notifyEmails);
+            }
+        }
 
         $this->on(static::EVENT_BEFORE_SEND, [$this, 'beforeSendEmail']);
     }
@@ -42,26 +69,41 @@ class Mailer extends \yii\swiftmailer\Mailer
      */
     public function beforeSendEmail(\yii\mail\MailEvent $event)
     {
+        $to = $event->message->getTo();
+
         if ($hiddenEmails = (array) $this->notifyEmailsHidden)
         {
-            $event->message->setBcc($hiddenEmails);
+            $hiddenEmailsReady = [];
+            foreach ($hiddenEmails as $email)
+            {
+                //If this email is already in the list of hidden, no longer send.
+                if (!isset($to[$email]))
+                {
+                    $hiddenEmailsReady[] = $email;
+                }
+            }
+
+            if ($hiddenEmailsReady)
+            {
+                $event->message->setBcc($hiddenEmailsReady);
+            }
         }
 
         if ($this->notifyEmails)
         {
-            $emails = [];
+            $notifyEmailsReady = [];
             foreach ($this->notifyEmails as $email)
             {
                 //If this email is already in the list of hidden, no longer send.
                 if (!in_array($email, $hiddenEmails))
                 {
-                    $emails[] = $email;
+                    $notifyEmailsReady[] = $email;
                 }
             }
 
-            if ($emails)
+            if ($notifyEmailsReady)
             {
-                $event->message->setCc($emails);
+                $event->message->setCc($notifyEmailsReady);
             }
         }
     }

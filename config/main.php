@@ -11,7 +11,7 @@ return [
     [
         'mailer' => [
             'class'         => 'skeeks\cms\mail\Mailer',
-            /*'view'          =>
+            'view'          =>
             [
                 'theme' =>
                 [
@@ -20,11 +20,11 @@ return [
                         '@app/mail' =>
                         [
                             '@app/mail',
-                            '@skeeks/cms/mail'
+                            '@skeeks/cms/mail/templates'
                         ]
                     ]
                 ]
-            ]*/
+            ]
         ],
 
         'mailerSettings' => [
