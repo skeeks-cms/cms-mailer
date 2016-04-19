@@ -17,7 +17,8 @@
 		}
 	],
 	"require": {
-		"skeeks/cms": "*"
+		"skeeks/cms": "*",
+	  	"yiisoft/yii2-swiftmailer": "*"
 	},
     "autoload": {
         "psr-4": {
