@@ -1,4 +1,4 @@
-View for SkeekS CMS
+Mailer for SkeekS CMS
 ===================================
 
 Installation
@@ -9,13 +9,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist skeeks/cms-view "*"
+php composer.phar require --prefer-dist skeeks/cms-mailer "*"
 ```
 
 or add
 
 ```
-"skeeks/cms-view": "*"
+"skeeks/cms-mailer": "*"
 ```
 
 Configuration app
@@ -25,50 +25,56 @@ Configuration app
 
 'components' =>
 [
-    'view' =>
-    [
-        'class' => 'skeeks\cms\view\ViewComponent',
-        /*'themes' =>
+    'mailer' => [
+        'class'         => 'skeeks\cms\mail\Mailer',
+        'view'          =>
         [
-            'one' =>
+            'theme' =>
             [
-                'class' => 'skeeks\cms\view\ThemeComponent',
-                'name'  => 'Default',
-                'pathMap'       =>
+                'pathMap' =>
                 [
-                    '@app/views' =>
+                    '@app/mail' =>
                     [
-                        '@app/templates/one',
-                        '@app/templates/default',
-                    ],
+                        '@app/mail',
+                        '@skeeks/cms/mail/templates'
+                    ]
                 ]
-            ],
-            'two' => []
-            //...
-        ]*/
+            ]
+        ]
     ],
 
-    'viewSettings' =>
-    [
-        'class' => 'skeeks\cms\view\ViewComponentSettings',
-        /*'theme' => 'one'*/
+    'mailerSettings' => [
+        'class'         => 'skeeks\cms\mail\MailerSettings',
     ],
 
     'i18n' => [
         'translations' =>
         [
-            'skeeks/view' => [
+            'skeeks/mail' => [
                 'class'             => 'yii\i18n\PhpMessageSource',
-                'basePath'          => '@skeeks/cms/view/messages',
+                'basePath'          => '@skeeks/cms/mail/messages',
                 'fileMap' => [
-                    'skeeks/view' => 'main.php',
+                    'skeeks/mail' => 'main.php',
                 ],
             ]
         ]
     ],
+],
+
+'modules' =>
+[
+    'mailer' => [
+        'class'         => 'skeeks\cms\mail\Module',
+    ]
 ]
 
 ```
+
+##Links
+* [Web site](http://en.cms.skeeks.com)
+* [Web site (rus)](http://cms.skeeks.com)
+* [Author](http://skeeks.com)
+* [ChangeLog](https://github.com/skeeks-cms/cms-mailer/blob/master/CHANGELOG.md)
 
 ___
 
