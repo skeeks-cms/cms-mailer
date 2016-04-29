@@ -26,10 +26,10 @@ class EmailConsoleForm extends Model
     public function attributeLabels()
     {
         return [
-            'content'   => \Yii::t('app','Content'),
-            'subject'   => \Yii::t('app','Subject'),
-            'to'        => \Yii::t('app','To'),
-            'from'      => \Yii::t('app','From')
+            'content'   => \Yii::t('skeeks/mail','Content'),
+            'subject'   => \Yii::t('skeeks/mail','Subject'),
+            'to'        => \Yii::t('skeeks/mail','To'),
+            'from'      => \Yii::t('skeeks/mail','From')
         ];
     }
 
