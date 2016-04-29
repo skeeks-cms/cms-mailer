@@ -53,12 +53,12 @@ class AdminTestController extends AdminController
 
         if ($model->load(\Yii::$app->request->post()) && $model->execute())
         {
-            $result         = \Yii::t('app',"Submitted");
+            $result         = \Yii::t('skeeks/mail',"Submitted");
         } else
         {
             if (\Yii::$app->request->post())
             {
-                $result         = \Yii::t('app',"Not sent");
+                $result         = \Yii::t('skeeks/mail',"Not sent");
             }
         }
 

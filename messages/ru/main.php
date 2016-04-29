@@ -11,5 +11,8 @@ return
     'Settings'                              => 'Настройки',
     'Testing sending'                       => 'Тестирование отправки',
     'Testing send email messages from site' => 'Тестирование отправки сообщений электронной почты с сайта',
+    'Test message'                          => 'Тестовое сообщение',
     'Body'                                  => 'Тело сообщения',
+    'If you have any problems with our website' => 'Если у вас возникли проблемы по работе с нашим сайтом',
+    'please do not hesitate to contact us'  => 'напишите нам',
 ];

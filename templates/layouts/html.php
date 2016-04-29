@@ -42,8 +42,7 @@ use yii\helpers\Html;
               </td>
                 <td valign="top">
                   <p style="font-size:11px;padding:1px 0 0;line-height:21px;margin:0 0 1px;">
-                      Если у вас возникли проблемы по работе с нашим сайтом — <a style="color:#66801C;" href="mailto:<?= \Yii::$app->cms->adminEmail; ?>">напишите нам</a>.<br>
-                      If you have any problems with our website — <a style="color:#66801C;" href="mailto:<?= \Yii::$app->cms->adminEmail; ?>" >please do not hesitate to contact us</a>.
+                      <?=\Yii::t('skeeks/mail','If you have any problems with our website');?> — <a style="color:#66801C;" href="mailto:<?= \Yii::$app->cms->adminEmail; ?>"><?=\Yii::t('skeeks/mail','please do not hesitate to contact us');?></a>.
                   </p>
                 </td>
             </tr>

@@ -67,7 +67,7 @@ use \yii\helpers\Html;
     </div>
 
 
-    <h2><?=\Yii::t('app','Configuration of {php} sending {email}',['php' => 'php', 'email' => 'email'])?>: </h2>
+    <h2><?=\Yii::t('skeeks/mail','Configuration of {php} sending {email}',['php' => 'php', 'email' => 'email'])?>: </h2>
     <div class="sx-result-config">
         <pre id="sx-result">
 <p><?= \Yii::t('skeeks/mail','Sendmail Path')?>: <?= ini_get('sendmail_path') ?></p>
