@@ -11,4 +11,5 @@ return
     'Settings'                              => 'Настройки',
     'Testing sending'                       => 'Тестирование отправки',
     'Testing send email messages from site' => 'Тестирование отправки сообщений электронной почты с сайта',
+    'Body'                                  => 'Тело сообщения',
 ];
