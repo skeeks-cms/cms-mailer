@@ -1,6 +1,10 @@
 CHANGELOG
 ==============
 
+1.0.0.1
+-----------------
+  * Cli app configuration
+
 1.0.0
 -----------------
   * Stable release

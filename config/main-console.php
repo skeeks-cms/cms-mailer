@@ -26,6 +26,23 @@ return [
                 ]
             ]
         ],
+
+        'mailerSettings' => [
+            'class'         => 'skeeks\cms\mail\MailerSettings',
+        ],
+
+        'i18n' => [
+            'translations' =>
+            [
+                'skeeks/mail' => [
+                    'class'             => 'yii\i18n\PhpMessageSource',
+                    'basePath'          => '@skeeks/cms/mail/messages',
+                    'fileMap' => [
+                        'skeeks/mail' => 'main.php',
+                    ],
+                ]
+            ]
+        ],
     ],
 
     'modules' =>
