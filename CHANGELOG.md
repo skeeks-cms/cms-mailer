@@ -1,6 +1,10 @@
 CHANGELOG
 ==============
 
+1.0.1
+-----------------
+  * Common default dir
+  
 1.0.0.1
 -----------------
   * Cli app configuration

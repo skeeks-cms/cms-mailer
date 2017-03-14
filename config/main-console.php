@@ -20,6 +20,7 @@ return [
                         '@app/mail' =>
                         [
                             '@app/mail',
+                            '@common/mail',
                             '@skeeks/cms/mail/templates'
                         ]
                     ]
