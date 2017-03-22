@@ -1,6 +1,11 @@
 CHANGELOG
 ==============
 
+
+2.0.0.pre
+-----------------
+  * SkeekS CMS v4
+
 1.0.1
 -----------------
   * Common default dir
