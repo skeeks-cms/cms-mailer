@@ -1,7 +1,11 @@
 CHANGELOG
 ==============
 
-2.0.0-alpha
+2.1.0
+-----------------
+ * Using composer-config-plugin
+ 
+2.0.0
 -----------------
   * SkeekS CMS v4
 
