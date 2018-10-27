@@ -2,13 +2,13 @@
 	"name": "skeeks/cms-mailer",
 	"description": "Mailer for SkeekS CMS",
 	"keywords": ["yii", "skeeks", "framework", "component", "mailer"],
-    	"homepage": "http://cms.skeeks.com/",
+    "homepage": "https://cms.skeeks.com/",
 	"type": "yii2-extension",
-	"license": "GPL-3.0+",
+	"license": "BSD-3-Clause",
 	"support": {
-        "issues": "http://skeeks.com/",
-        "wiki": "http://en.cms.skeeks.com/docs/",
-        "source": "https://github.com/skeeks-cms/cms-mailer"
+        "issues": "https://cms.skeeks.com",
+        "wiki": "https://git.skeeks.com/skeeks/cms/wikis/home",
+        "source": "https://git.skeeks.com/skeeks/cms"
     },
 	"authors": [
 		{
@@ -16,19 +16,19 @@
 			"email": "semenov@skeeks.com"
 		}
 	],
-	"require": {
-		"skeeks/cms": "*",
-	  	"yiisoft/yii2-swiftmailer": "*"
+    "require": {
+		"skeeks/cms": "^5.0.4 || dev-master",
+        "yiisoft/yii2-swiftmailer": "^2.1.1"
 	},
     "autoload": {
         "psr-4": {
-            "skeeks\\cms\\mail\\": ""
+            "skeeks\\cms\\mail\\": "src/"
         }
     },
     "extra": {
         "config-plugin": {
-            "web": "config/main.php",
-            "console": "config/main-console.php"
+            "web": "src/config/main.php",
+            "console": "src/config/main-console.php"
         }
     }
 }

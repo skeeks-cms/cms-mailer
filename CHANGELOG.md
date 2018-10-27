@@ -1,6 +1,10 @@
 CHANGELOG
 ==============
 
+2.1.1
+-----------------
+ * Change src
+ 
 2.1.0
 -----------------
  * Using composer-config-plugin

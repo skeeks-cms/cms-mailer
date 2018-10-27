@@ -29,4 +29,16 @@ class Html extends \yii\helpers\Html
         static::addCssStyle($options, ArrayHelper::getValue(\Yii::$app->mailer->tagStyles, $name, ''));
         return parent::beginTag($name, $options);
     }
+
+    /**
+     * @param bool|null|string $name
+     * @param string           $content
+     * @param array            $options
+     * @return string
+     */
+    public static function tag($name, $content = '', $options = [])
+    {
+        static::addCssStyle($options, ArrayHelper::getValue(\Yii::$app->mailer->tagStyles, $name, ''));
+        return parent::tag($name, $content, $options);
+    }
 }
