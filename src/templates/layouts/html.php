@@ -35,13 +35,15 @@ use yii\helpers\Html;
             </tr>
 
             <tr>
-                <td valign="center" style="width:50px;">
+                <td valign="center" style="    width: 50px;
+    height: 50px;
+    line-height: 50px;">
                   <a href="<?= \Yii::$app->cms->descriptor->homepage; ?>" target="_blank" style="width: 50px;">
-                      <img src="<?= \Yii::$app->cms->logo(); ?>">
+                      <img style="height: 50px;" src="<?= \Yii::$app->cms->logo(); ?>">
                   </a>
               </td>
                 <td valign="top">
-                  <p style="font-size:11px;padding:1px 0 0;line-height:21px;margin:0 0 1px;">
+                  <p style="font-size:11px;padding:1px 0 0;line-height:50px;margin:0 0 1px;">
                       <?=\Yii::t('skeeks/mail','If you have any problems with our website');?> — <a style="color:#66801C;" href="mailto:<?= \Yii::$app->cms->adminEmail; ?>"><?=\Yii::t('skeeks/mail','please do not hesitate to contact us');?></a>.
                   </p>
                 </td>
