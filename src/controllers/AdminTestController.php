@@ -51,16 +51,21 @@ class AdminTestController extends AdminController
 
         $result     = "";
 
-        if ($model->load(\Yii::$app->request->post()) && $model->execute())
-        {
-            $result         = \Yii::t('skeeks/mail',"Submitted");
-        } else
-        {
-            if (\Yii::$app->request->post())
+        try {
+            if ($model->load(\Yii::$app->request->post()) && $model->execute())
             {
-                $result         = \Yii::t('skeeks/mail',"Not sent");
+                $result         = \Yii::t('skeeks/mail',"Submitted");
+            } else
+            {
+                if (\Yii::$app->request->post())
+                {
+                    $result         = \Yii::t('skeeks/mail',"Not sent");
+                }
             }
+        } catch (\Exception $e) {
+            $result         = \Yii::t('skeeks/mail',"Not sent" ) . ": " . $e->getMessage();
         }
+
 
         return $this->render('index', [
             'model'     => $model,

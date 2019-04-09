@@ -48,14 +48,14 @@ class Mailer extends \yii\swiftmailer\Mailer
         //Если транспорт не настроен программистом, пробуем взять настрйки из админки
         if (!ArrayHelper::getValue(\Yii::$app->components, 'mailer.transport')) {
             if (\Yii::$app->mailerSettings->transport_class) {
-                $this->transport = \Yii::createObject([
+                $this->transport = [
                     'class'      => \Yii::$app->mailerSettings->transport_class,
                     'host'       => \Yii::$app->mailerSettings->transport_host,
                     'username'   => \Yii::$app->mailerSettings->transport_username,
                     'password'   => \Yii::$app->mailerSettings->transport_password,
                     'port'       => \Yii::$app->mailerSettings->transport_port,
                     'encryption' => \Yii::$app->mailerSettings->transport_encryption,
-                ]);
+                ];
             }
         }
 

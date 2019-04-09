@@ -58,8 +58,18 @@ use \yii\helpers\Html;
     <h2><?= \Yii::t('skeeks/mail','Configuration of component {cms} sending {email}',['cms' => 'cms', 'email' => 'email'])?>: </h2>
     <div class="sx-result-config">
         <pre id="sx-result">
+
+
 <p><?= \Yii::t('skeeks/mail','Mail component')?>: <?= \Yii::$app->mailer->className(); ?></p>
+
 <p><?= \Yii::t('skeeks/mail','Transport')?>: <?= (new \ReflectionObject(\Yii::$app->mailer->transport))->getName(); ?></p>
+
+<? if ($mailerData = \yii\helpers\ArrayHelper::getValue(\Yii::$app->components, "mailer.transport")) : ?>
+    <p><?= \Yii::t('skeeks/mail','Настройки траспорта из кода: ')?>: <?= print_r($mailerData, true); ?></p>
+<? else: ?>
+    <p><?= \Yii::t('skeeks/mail','Настройки траспорта из компонента: ')?>: <?= print_r(\Yii::$app->mailerSettings->toArray(), true); ?></p>
+<? endif; ?>
+
 <p><?= \Yii::t('skeeks/mail','Transport running')?>: <?= (int) \Yii::$app->mailer->transport->isStarted(); ?></p>
 <p><?= \Yii::t('skeeks/mail','Mailer viewPath')?>: <?= \Yii::$app->mailer->viewPath; ?></p>
 <p><?= \Yii::t('skeeks/mail','Mailer messageClass')?>: <?= \Yii::$app->mailer->messageClass; ?></p>
