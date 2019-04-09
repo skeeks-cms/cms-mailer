@@ -7,6 +7,7 @@
  */
 namespace skeeks\cms\mail;
 
+use yii\helpers\ArrayHelper;
 /**
  * Class Mailer
  * @package skeeks\cms\mail
@@ -44,6 +45,20 @@ class Mailer extends \yii\swiftmailer\Mailer
 
     public function init()
     {
+        //Если транспорт не настроен программистом, пробуем взять настрйки из админки
+        if (!ArrayHelper::getValue(\Yii::$app->components, 'mailer.transport')) {
+            if (\Yii::$app->mailerSettings->transport_class) {
+                $this->transport = \Yii::createObject([
+                    'class'      => \Yii::$app->mailerSettings->transport_class,
+                    'host'       => \Yii::$app->mailerSettings->transport_host,
+                    'username'   => \Yii::$app->mailerSettings->transport_username,
+                    'password'   => \Yii::$app->mailerSettings->transport_password,
+                    'port'       => \Yii::$app->mailerSettings->transport_port,
+                    'encryption' => \Yii::$app->mailerSettings->transport_encryption,
+                ]);
+            }
+        }
+
         parent::init();
 
         if (\Yii::$app->mailerSettings)
@@ -58,6 +73,8 @@ class Mailer extends \yii\swiftmailer\Mailer
                 $this->notifyEmails = explode(',', \Yii::$app->mailerSettings->notifyEmails);
             }
         }
+
+
 
         $this->on(static::EVENT_BEFORE_SEND, [$this, 'beforeSendEmail']);
     }
