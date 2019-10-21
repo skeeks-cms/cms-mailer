@@ -63,6 +63,7 @@ class AdminTestController extends AdminController
                 }
             }
         } catch (\Exception $e) {
+            //throw $e;
             $result         = \Yii::t('skeeks/mail',"Not sent" ) . ": " . $e->getMessage();
         }
 
