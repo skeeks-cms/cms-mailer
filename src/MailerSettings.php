@@ -8,6 +8,7 @@
 
 namespace skeeks\cms\mail;
 
+use skeeks\cms\backend\widgets\ActiveFormBackend;
 use skeeks\cms\base\Component;
 use skeeks\yii2\form\fields\FieldSet;
 use skeeks\yii2\form\fields\HtmlBlock;
@@ -144,12 +145,18 @@ class MailerSettings extends Component
         ]);
     }
 
-    public function renderConfigForm(ActiveForm $form)
+    /*public function renderConfigForm(ActiveForm $form)
     {
         echo $form->field($this, 'notifyEmails')->textarea();
         echo $form->field($this, 'notifyEmailsHidden')->textarea();
-    }
+    }*/
 
+
+    
+    public function beginConfigForm()
+    {
+        return ActiveFormBackend::begin();
+    }
 
     /**
      * @return array
