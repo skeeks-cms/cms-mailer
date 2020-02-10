@@ -45,9 +45,11 @@ class MailerSettings extends Component
 
     static public function descriptorConfig()
     {
-        return ArrayHelper::merge(parent::descriptorConfig(), [
+        return array_merge(parent::descriptorConfig(), [
             'name' => \Yii::t('skeeks/mail', 'Mailer'),
-            'image' => [MailerAsset::class, 'icons/email_1024.png'],
+            'image' => [
+                MailerAsset::class, 'icons/email_1024.png'
+            ],
         ]);
     }
 
