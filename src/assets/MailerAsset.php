@@ -9,8 +9,7 @@ namespace skeeks\cms\mail\assets;
 use yii\web\AssetBundle;
 
 /**
- * Class MailerAsset
- * @package skeeks\cms\mail\assets
+ * @author Semenov Alexander <semenov@skeeks.com>
  */
 class MailerAsset extends AssetBundle
 {
