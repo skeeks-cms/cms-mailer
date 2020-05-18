@@ -4,8 +4,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $user common\models\User */
 ?>
-
-<h1 style="color:#1D5800;font-size:32px;font-weight:normal;margin-bottom:13px;margin-top:20px;"><?=\Yii::t('skeeks/mail','Тестовое сообщение')?> <?= \Yii::$app->cms->appName; ?></h1>
+<?= \skeeks\cms\mail\helpers\Html::beginTag("h1"); ?>
+<?=\Yii::t('skeeks/mail','Тестовое сообщение')?> <?= \Yii::$app->cms->appName; ?>
+<?= \skeeks\cms\mail\helpers\Html::endTag("h1"); ?>
 
 <p style="font:Arial,Helvetica,sans-serif;">
     <?= $content; ?>
