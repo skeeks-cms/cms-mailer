@@ -88,9 +88,10 @@ class MailerSettings extends Component
                     'transport_username',
                 ], function($attribute) {
                     if ($this->transport_class != "Swift_SmtpTransport") {
+                        $this->{$attribute} = '';
                         if ($this->{$attribute} != "") {
-                            $this->addError($attribute, "{$attribute} должен быть пустым");
-                            return false;
+                            //$this->addError($attribute, "{$attribute} должен быть пустым");
+                            //return false;
                         }
                     }
 
