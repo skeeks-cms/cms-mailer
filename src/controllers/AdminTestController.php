@@ -8,12 +8,12 @@
 
 namespace skeeks\cms\mail\controllers;
 
+use skeeks\cms\helpers\RequestResponse;
 use skeeks\cms\mail\models\forms\EmailConsoleForm;
 use skeeks\cms\modules\admin\controllers\AdminController;
 use skeeks\cms\modules\admin\controllers\helpers\rules\NoModel;
 use skeeks\cms\modules\admin\models\forms\SshConsoleForm;
-use skeeks\cms\modules\admin\widgets\ActiveForm;
-use yii\web\Response;
+use yii\base\Exception;
 
 /**
  * Class IndexController
@@ -31,12 +31,6 @@ class AdminTestController extends AdminController
     public function actionIndex()
     {
         $model = new EmailConsoleForm();
-
-        if (\Yii::$app->request->isAjax && !\Yii::$app->request->isPjax) {
-            $model->load(\Yii::$app->request->post());
-            \Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
 
         $result = "";
 
@@ -58,6 +52,30 @@ class AdminTestController extends AdminController
             'model'  => $model,
             'result' => $result,
         ]);
+    }
+
+
+    public function actionSubmit()
+    {
+        $rr = new RequestResponse();
+        $model = new EmailConsoleForm();
+
+        if ($rr->isRequestAjaxPost()) {
+            try {
+                if ($model->load(\Yii::$app->request->post()) && $model->execute()) {
+                    $rr->success = true;
+                    $rr->message = "Письмо успешно отправлено";
+                } else {
+                    throw new Exception("Письмо не отправлено: " . print_r($model->errors, true));
+                }
+            } catch (\Exception $e) {
+                //throw $e;
+                $rr->success = false;
+                $rr->message = $e->getMessage();
+            }
+        }
+
+        return $rr;
     }
 
 

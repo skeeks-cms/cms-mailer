@@ -8,53 +8,88 @@
  */
 /* @var $this yii\web\View */
 /* @var $model \skeeks\cms\modules\admin\models\forms\SshConsoleForm */
-use skeeks\cms\modules\admin\widgets\ActiveForm;
-use \yii\helpers\Html;
+use yii\helpers\Html;
 ?>
+<div class="row">
+    <div class="col-6">
+        <div class="sx-bg-secondary" style="padding: 10px;">
+            <? $form = \skeeks\cms\base\widgets\ActiveFormAjaxSubmit::begin([
+                'action'               => \yii\helpers\Url::to(['submit']),
+                'enableAjaxValidation' => false,
+                //'enableClientValidation' => false,
+                'clientCallback'       => new \yii\web\JsExpression(<<<JS
+    function (ActiveFormAjaxSubmit) {
+    
+            
+        ActiveFormAjaxSubmit.on('error', function(e, response) {
+            
+            ActiveFormAjaxSubmit.AjaxQueryHandler.set("allowResponseSuccessMessage", false);
+            ActiveFormAjaxSubmit.AjaxQueryHandler.set("allowResponseErrorMessage", false);
+            
+            $("#sx-result-error").show().empty();
+            $("#sx-result-submit").hide().empty();
 
-<div class="sx-widget-ssh-console">
-    <? $form = ActiveForm::begin([
-        'usePjax' => true,
-    ]) ?>
+            if (response.message) {
+                $("#sx-result-error").append(response.message);
+            }
+        });
+        
+        
+        ActiveFormAjaxSubmit.on('success', function(e, response) {
+            
+            ActiveFormAjaxSubmit.AjaxQueryHandler.set("allowResponseSuccessMessage", false);
+            ActiveFormAjaxSubmit.AjaxQueryHandler.set("allowResponseErrorMessage", false);
+            
+            $("#sx-result-error").hide().empty();
+            $("#sx-result-submit").show().empty();
 
-    <?= $form->field($model, 'to')->textInput([
-        'placeholder' => 'email',
-        'value'       => \Yii::$app->user->identity->email,
-    ]); ?>
+            if (response.message) {
+                $("#sx-result-submit").append(response.message);
+            }
+        });
+    }
+JS
+                ),
+            ]) ?>
 
-    <?= $form->field($model, 'from')->textInput([
-        'placeholder' => 'email',
-        'value'       => \Yii::$app->cms->adminEmail,
-    ]); ?>
+            <?= $form->field($model, 'to')->textInput([
+                'placeholder' => 'email',
+                'value'       => \Yii::$app->user->identity->email,
+            ]); ?>
 
-    <?= $form->field($model, 'subject')->textInput([
-        'placeholder' => \Yii::t('skeeks/mail', 'Subject'),
-        'value'       => \Yii::t('skeeks/mail', 'Letter test'),
-    ]); ?>
+            <?= $form->field($model, 'from')->textInput([
+                'placeholder' => 'email',
+                'value'       => \Yii::$app->cms->adminEmail,
+            ]); ?>
 
-    <?= $form->field($model, 'content')->textarea([
-        'placeholder' => \Yii::t('skeeks/mail', 'Body'),
-        'value'       => \Yii::t('skeeks/mail', 'Letter test'),
-        'rows'        => 8,
-    ]); ?>
+            <?= $form->field($model, 'subject')->textInput([
+                'placeholder' => \Yii::t('skeeks/mail', 'Subject'),
+                'value'       => \Yii::t('skeeks/mail', 'Letter test'),
+            ]); ?>
 
-    <?= Html::tag('div',
-        Html::submitButton(\Yii::t('skeeks/mail', "Send {email}", ['email' => "email"]), ['class' => 'btn btn-primary']),
-        ['class' => 'form-group']
-    ); ?>
+            <?= $form->field($model, 'content')
+                ->widget(
+                    \skeeks\cms\widgets\formInputs\comboText\ComboTextInputWidget::class
+                );
+            ?>
 
-    <? if ($result) : ?>
-        <h2><?= \Yii::t('skeeks/mail', 'Result of sending') ?>: </h2>
-        <div class="sx-result-container">
-                        <pre id="sx-result">
-<p><?= $result; ?></p>
-                        </pre>
+            <?= Html::tag('div',
+                Html::submitButton(\Yii::t('skeeks/mail', "Отправить"), ['class' => 'btn btn-primary']),
+                ['class' => 'form-group']
+            ); ?>
+
+            <div id="sx-result-submit" class="alert-success alert" style="display: none;">
+            </div>
+            <div id="sx-result-error" class="alert-danger alert" style="display: none;">
+            </div>
+
+            <? $form::end() ?>
+
         </div>
-    <? endif; ?>
-
-
-    <h2><?= \Yii::t('skeeks/mail', 'Configuration of component {cms} sending {email}', ['cms' => 'cms', 'email' => 'email']) ?>: </h2>
-    <div class="sx-result-config">
+    </div>
+    <div class="col-6">
+        <h4><?= \Yii::t('skeeks/mail', 'Configuration of component {cms} sending {email}', ['cms' => 'cms', 'email' => 'email']) ?>: </h4>
+        <div class="sx-result-config">
         <pre id="sx-result">
 
 
@@ -72,16 +107,19 @@ use \yii\helpers\Html;
 <p><?= \Yii::t('skeeks/mail', 'Mailer viewPath') ?>: <?= \Yii::$app->mailer->viewPath; ?></p>
 <p><?= \Yii::t('skeeks/mail', 'Mailer messageClass') ?>: <?= \Yii::$app->mailer->messageClass; ?></p>
         </pre>
-    </div>
+        </div>
 
 
-    <h2><?= \Yii::t('skeeks/mail', 'Configuration of {php} sending {email}', ['php' => 'php', 'email' => 'email']) ?>: </h2>
-    <div class="sx-result-config">
+        <h4><?= \Yii::t('skeeks/mail', 'Configuration of {php} sending {email}', ['php' => 'php', 'email' => 'email']) ?>: </h4>
+        <div class="sx-result-config">
         <pre id="sx-result">
 <p><?= \Yii::t('skeeks/mail', 'Sendmail Path') ?>: <?= ini_get('sendmail_path') ?></p>
 <p><?= \Yii::t('skeeks/mail', 'Sendmail From') ?>: <?= ini_get('sendmail_from') ?></p>
         </pre>
+        </div>
     </div>
-    <? ActiveForm::end() ?>
 </div>
+
+
+
 
