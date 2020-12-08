@@ -8,8 +8,8 @@
 namespace skeeks\cms\mail\helpers;
 use yii\helpers\ArrayHelper;
 /**
- * Class Html
- * @package skeeks\cms\mail\helpers
+ * @deprecated
+ * @author Semenov Alexander <semenov@skeeks.com>
  */
 class Html extends \yii\helpers\Html
 {
@@ -24,11 +24,11 @@ class Html extends \yii\helpers\Html
      * @see endTag()
      * @see tag()
      */
-    public static function beginTag($name, $options = [])
+    /*public static function beginTag($name, $options = [])
     {
         static::addCssStyle($options, ArrayHelper::getValue(\Yii::$app->mailer->tagStyles, $name, ''));
         return parent::beginTag($name, $options);
-    }
+    }*/
 
     /**
      * @param bool|null|string $name
@@ -36,9 +36,9 @@ class Html extends \yii\helpers\Html
      * @param array            $options
      * @return string
      */
-    public static function tag($name, $content = '', $options = [])
+    /*public static function tag($name, $content = '', $options = [])
     {
         static::addCssStyle($options, ArrayHelper::getValue(\Yii::$app->mailer->tagStyles, $name, ''));
         return parent::tag($name, $content, $options);
-    }
+    }*/
 }
