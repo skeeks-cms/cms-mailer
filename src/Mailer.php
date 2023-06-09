@@ -12,7 +12,7 @@ use yii\helpers\ArrayHelper;
  * Class Mailer
  * @package skeeks\cms\mail
  */
-class Mailer extends \yii\swiftmailer\Mailer
+class Mailer extends \yii\symfonymailer\Mailer
 {
     /**
      * @var string message default class name.
@@ -49,12 +49,20 @@ class Mailer extends \yii\swiftmailer\Mailer
         if (!ArrayHelper::getValue(\Yii::$app->components, 'mailer.transport')) {
             if (\Yii::$app->mailerSettings->transport_class) {
                 $this->transport = [
-                    'class'      => \Yii::$app->mailerSettings->transport_class,
+                    //'class'      => \Yii::$app->mailerSettings->transport_class,
+                    'scheme' => 'smtp',
                     'host'       => \Yii::$app->mailerSettings->transport_host,
                     'username'   => \Yii::$app->mailerSettings->transport_username,
                     'password'   => \Yii::$app->mailerSettings->transport_password,
                     'port'       => \Yii::$app->mailerSettings->transport_port,
-                    'encryption' => \Yii::$app->mailerSettings->transport_encryption,
+                    //'encryption' => \Yii::$app->mailerSettings->transport_encryption,
+                ];
+            } else {
+                $this->transport = [
+                    //'class'      => \Yii::$app->mailerSettings->transport_class,
+                    'scheme' => 'smtps',
+                    'dsn' => 'native://default',
+                    //'encryption' => \Yii::$app->mailerSettings->transport_encryption,
                 ];
             }
         }

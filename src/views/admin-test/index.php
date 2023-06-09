@@ -95,7 +95,7 @@ JS
 
 <p><?= \Yii::t('skeeks/mail', 'Mail component') ?>: <?= \Yii::$app->mailer->className(); ?></p>
 
-<p><?= \Yii::t('skeeks/mail', 'Transport') ?>: <?= (new \ReflectionObject(\Yii::$app->mailer->transport))->getName(); ?></p>
+<!--<p><?/*= \Yii::t('skeeks/mail', 'Transport') */?>: <?/*= (new \ReflectionObject(\Yii::$app->mailer->transport))->getName(); */?></p>-->
 
 <? if ($mailerData = \yii\helpers\ArrayHelper::getValue(\Yii::$app->components, "mailer.transport")) : ?>
     <p><?= \Yii::t('skeeks/mail', 'Настройки траспорта из кода: ') ?>: <?= print_r($mailerData, true); ?></p>
@@ -103,7 +103,7 @@ JS
     <p><?= \Yii::t('skeeks/mail', 'Настройки траспорта из компонента: ') ?>: <?= print_r(\Yii::$app->mailerSettings->toArray(), true); ?></p>
 <? endif; ?>
 
-<p><?= \Yii::t('skeeks/mail', 'Transport running') ?>: <?= (int)\Yii::$app->mailer->transport->isStarted(); ?></p>
+<!--<p><?/*= \Yii::t('skeeks/mail', 'Transport running') */?>: <?/*= (int)\Yii::$app->mailer->transport->isStarted(); */?></p>-->
 <p><?= \Yii::t('skeeks/mail', 'Mailer viewPath') ?>: <?= \Yii::$app->mailer->viewPath; ?></p>
 <p><?= \Yii::t('skeeks/mail', 'Mailer messageClass') ?>: <?= \Yii::$app->mailer->messageClass; ?></p>
         </pre>

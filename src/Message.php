@@ -11,7 +11,7 @@ namespace skeeks\cms\mail;
  * Class Message
  * @package skeeks\cms\mail
  */
-class Message extends \yii\swiftmailer\Message
+class Message extends \yii\symfonymailer\Message
 {
     public function init()
     {
