@@ -54,7 +54,7 @@ class Mailer extends \yii\symfonymailer\Mailer
                     'host'       => \Yii::$app->mailerSettings->transport_host,
                     'username'   => \Yii::$app->mailerSettings->transport_username,
                     'password'   => \Yii::$app->mailerSettings->transport_password,
-                    'port'       => \Yii::$app->mailerSettings->transport_port,
+                    'port'       => (int) \Yii::$app->mailerSettings->transport_port,
                     //'encryption' => \Yii::$app->mailerSettings->transport_encryption,
                 ];
             } else {
