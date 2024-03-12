@@ -11,7 +11,7 @@ return [
         'backendAdmin' => [
             'menu' => [
                 'data' => [
-                    'other' => [
+                    'settings' => [
                         'items' => [
                             [
                                 "name"     =>['skeeks/mail', 'Mailer'],
