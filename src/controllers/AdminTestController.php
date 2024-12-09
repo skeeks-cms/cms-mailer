@@ -13,6 +13,7 @@ use skeeks\cms\mail\models\forms\EmailConsoleForm;
 use skeeks\cms\modules\admin\controllers\AdminController;
 use skeeks\cms\modules\admin\controllers\helpers\rules\NoModel;
 use skeeks\cms\modules\admin\models\forms\SshConsoleForm;
+use skeeks\cms\rbac\CmsManager;
 use yii\base\Exception;
 
 /**
@@ -24,6 +25,9 @@ class AdminTestController extends AdminController
     public function init()
     {
         $this->name = \Yii::t('skeeks/mail', "Testing send email messages from site");
+
+        $this->generateAccessActions = false;
+        $this->permissionName = CmsManager::PERMISSION_ROLE_ADMIN_ACCESS;
 
         parent::init();
     }
@@ -66,7 +70,7 @@ class AdminTestController extends AdminController
                     $rr->success = true;
                     $rr->message = "Письмо успешно отправлено";
                 } else {
-                    throw new Exception("Письмо не отправлено: " . print_r($model->errors, true));
+                    throw new Exception("Письмо не отправлено: ".print_r($model->errors, true));
                 }
             } catch (\Exception $e) {
                 //throw $e;
