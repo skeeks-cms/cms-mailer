@@ -10,7 +10,7 @@ namespace skeeks\cms\mail;
 
 use skeeks\cms\backend\widgets\ActiveFormBackend;
 use skeeks\cms\base\Component;
-use skeeks\cms\mail\assets\MailerAsset;
+use skeeks\cms\assets\CmsAsset;
 use skeeks\yii2\form\fields\FieldSet;
 use skeeks\yii2\form\fields\HtmlBlock;
 use skeeks\yii2\form\fields\SelectField;
@@ -48,7 +48,7 @@ class MailerSettings extends Component
         return array_merge(parent::descriptorConfig(), [
             'name' => \Yii::t('skeeks/mail', 'Mailer'),
             'image' => [
-                MailerAsset::class, 'icons/email_1024.png'
+                CmsAsset::class, 'images/icons/admin-menu/mail.svg'
             ],
         ]);
     }
